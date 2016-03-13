@@ -1,0 +1,9 @@
+.wiggly-jumbo {
+  background-color: darkkhaki;
+  padding: 20px;
+  border-radius: 20px;
+
+  &__title--hover {
+    background: url('./img/wiggle.gif');
+  }
+}
