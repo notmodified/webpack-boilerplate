@@ -3,6 +3,12 @@
   padding: 20px;
   border-radius: 20px;
 
+  &__title {
+    /* required to force css-loader to
+     * generate styles
+     */
+  }
+
   &__title--hover {
     background: url('./img/wiggle.gif');
   }

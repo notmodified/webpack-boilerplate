@@ -1,19 +1,21 @@
 'use strict';
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const autoreset = require('postcss-autoreset');
+const postcssinitial = require('postcss-initial');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 let cssLoaders = [
   { test: /\.css$/, loaders: ['style', 'css', 'postcss'] },
-  { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass'] },
+  { test: /\.scss$/, loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]', 'postcss', 'sass'] },
 ];
 
 if (process.env.NODE_ENV === 'production') {
   cssLoaders = [
     { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
     { test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader') },
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]!postcss-loader!sass-loader') },
   ];
 }
 
@@ -67,7 +69,11 @@ const config = {
     new ExtractTextPlugin('[name].css'),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
   ],
-  postcss: () => [autoprefixer],
+  postcss: () => [
+    autoprefixer,
+  //  autoreset({rulesMatcher:'bem',reset:'sizes'}),
+    postcssinitial
+  ],
 };
 
 module.exports = config;

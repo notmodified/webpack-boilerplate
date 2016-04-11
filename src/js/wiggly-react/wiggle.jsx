@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import './wiggle.scss';
+import styles from './wiggle.scss';
 
 export default React.createClass({
 
   over() {
     this.setState({
-      className: 'wiggle-react__title--hover'
+      className: styles['wiggle-react__title--hover']
     })
   },
 
@@ -22,7 +22,7 @@ export default React.createClass({
   render() {
     return (
       <div
-        className='wiggle-react'
+        className={styles['wiggle-react']}
         onMouseOut={this.out}
         onMouseOver={this.over}>
         <h1 className={this.state.className}>
