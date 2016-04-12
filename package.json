@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "build": "NODE_ENV='production' ./node_modules/.bin/webpack -p && cp -r src/markup/* public/",
+    "build_windows": "set NODE_ENV=production&&.\\node_modules\\.bin\\webpack -p&&copy src\\markup\\* public\\",
     "deploy": "npm run build && ./node_modules/.bin/surge -d placid-floor.surge.sh -p ./public/"
   },
   "author": "",
